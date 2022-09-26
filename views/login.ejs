@@ -1,0 +1,46 @@
+<%- include('partials/header') -%>
+
+<main id="login-center" class="container">
+
+<img src="https://i.ibb.co/C9y41Yw/Screen-Shot-2022-09-25-at-1-22-32-PM.png" alt="our logo of a book" height="200">
+
+  <div class="row justify-content-center">
+    <section class="col-6 mt-5">
+      <% if (locals.messages.errors) { %> <% messages.errors.forEach( el => { %>
+      <div class="alert alert-danger"><%= el.msg %></div>
+      <% }) %> <% } %> <% if (locals.messages.info) { %> <%
+      messages.info.forEach( el => { %>
+      <div class="alert alert-info"><%= el.msg %></div>
+      <% }) %> <% } %>
+      <form class="grid justify-items-center" action="/login" method="POST">
+        <div class="">
+          <label for="exampleInputEmail1" class=""
+            >Email address</label
+          ><br>
+          <input
+            type="email"
+            class="input input-bordered w-full max-w-xs"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+            name="email"
+          />
+        </div><br>
+        <div class="">
+          <label for="exampleInputPassword1" class="form-label">Password</label><br>
+          <input
+            type="password"
+            class="input input-bordered w-full max-w-xs"
+            id="exampleInputPassword1"
+            name="password"
+
+          /><br><br>
+        </div>
+        <button type="submit" class="inline-block cursor-pointer rounded-md bg-gray-800 px-4 py-3 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-900  ">Submit</button>
+      </form>
+    </section>
+  </div>
+</main>
+
+
+
+<%- include('partials/footer') -%>
