@@ -14,14 +14,14 @@
 
           <div class="mt-5">
             <h2>Add a Book</h2>
-            <form action="/post/createPost" enctype="multipart/form-data" method="POST">
+            <form action="/book/createBook" enctype="multipart/form-data" method="POST">
               <div class="mb-3">
                   <label for="title" class="form-label">Title</label>
                   <input type="text" class="input input-bordered w-full max-w-xs" id="title" name="title">
               </div>
               <div class="mb-3">
-                <label for="caption" class="form-label">Author</label>
-                <textarea class="input input-bordered w-full max-w-xs" id="caption" name="caption"></textarea>
+                <label for="author" class="form-label">Author</label>
+                <textarea class="input input-bordered w-full max-w-xs" id="author" name="author"></textarea>
               </div>
               <div class="mb-3">
                 <label for="imgUpload" class="form-label">Image</label>
@@ -39,10 +39,10 @@
       </div>
       <div class="col-6">
         <ul class="row list-unstyled">
-        <% for(var i=0; i<posts.length; i++) {%>
+        <% for(var i=0; i<books.length; i++) {%>
           <li class="col-6 justify-content-between mt-5">
-            <a href="/post/<%= posts[i]._id%>">
-              <img class="img-fluid" src="<%= posts[i].image%>">
+            <a href="/book/<%= books[i]._id%>">
+              <img class="img-fluid" src="<%= books[i].image%>">
             </a>
           </li>
         <% } %>

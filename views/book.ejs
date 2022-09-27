@@ -1,0 +1,45 @@
+<%- include('partials/header') -%>
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-6">
+      <h2><strong>Title</strong>:<%= book.title %></h2>
+        <p><strong>Author</strong>:<%= book.author %></p>
+      </div>
+      <!--Want to add the name of the Teacher so student can find book-->
+      <p><strong>Teacher's Shelf</strong>:<%= book.user %></p>
+
+      <img class="img-fluid" src="<%= book.image%>" />
+      <div class="row justify-content-between">
+
+        <!--<h3 class="col-3">Likes: <%= book.likes %></h3>-->
+        <!--need to add usabilit to this delete button-->
+        <!--<%if(book.user == user.id){ %>
+          <a
+           class="btn btn-primary ">Delete Book</a>
+        <%}%>-->
+
+        <%if(book.user == user.id){ %>
+          <form
+            action="/book/deleteBook/<%= book.id %>?_method=DELETE"
+            method="POST"
+          >
+            <button class="input input-bordered w-full max-w-xs"  type="submit">DELETE</button>
+          </form>
+          <%}%>
+<!--adding the ability for users to check out book. visuals, button, need to add functionality -->
+         <%if(user.role == "Student"){ %>
+              <button class="input input-bordered w-full max-w-xs" type="submit">CHECK OUT</button>
+            </form>
+            <%}%>
+
+      </div>
+    </div>
+
+    <div class="col-6 mt-5">
+      <a class="btn btn-primary" href="/profile">Return to Profile</a>
+      <a class="btn btn-primary" href="/feed">Return to Booklist</a>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') -%>
