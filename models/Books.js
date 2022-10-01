@@ -27,7 +27,18 @@ const BookSchema = new mongoose.Schema({
   },
   createdAt: {
     type: Date,
-    default: Date.now,
+    ref:"User",
+  }, 
+  createdBy: {
+    type: String,
+    default: "User",
+  },
+  holdBook: {
+    type: [{
+      type: String,
+      ref: "User",  
+    }],
+    default: [],
   },
 });
 

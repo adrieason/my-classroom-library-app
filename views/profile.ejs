@@ -3,11 +3,15 @@
   <div class="row mt-5">
       <div class="col-6">
           <div>
-              <p><strong>WELCOME <%= user.userName.toUpperCase() %>!!!</strong></p>
+              <h2><strong>WELCOME <%= user.userName.toUpperCase() %>!!!</strong></h2>
               <!--<p><strong>Email</strong>: <%= user.email %></p>-->
-              <a href="/logout" class="col-3 btn btn-primary">Logout</a>
+              <%if(user.role == "Student"){ %>
+              <span>You currently have the following books checked out</span>
+
+              <%}%>
+
           </div>
-<!--only users with the assigned role of teacher can Add a Book-->
+<!--only users with the assigned role of teacher can Add a Book
 
 <%if(user.role == "Teacher"){ %>
 
@@ -31,14 +35,14 @@
             </form>
           </div>
 
-          <!--end of role===teacher only section-->
+          end of role===teacher only section
 
 
-            <%}%>
+            <%}%>-->
 
       </div>
       <div class="col-6">
-        <ul class="row list-unstyled">
+       <!-- <ul class="row list-unstyled">
         <% for(var i=0; i<books.length; i++) {%>
           <li class="col-6 justify-content-between mt-5">
             <a href="/book/<%= books[i]._id%>">
@@ -46,10 +50,14 @@
             </a>
           </li>
         <% } %>
-        </ul>
+        </ul>-->
 
         <div class="row justify-content-center mt-5">
-          <a class="btn btn-primary" href="/feed">Look for Books</a>
+          <%if(user.role == "Teacher"){ %>
+          <a class="btn btn-primary" href="/addabook">Add Books to the Shelf</a>
+          <%}%>
+
+          <a class="btn btn-primary" href="/feed">Look for More Books</a>
         </div>  
       </div>  
     </div>

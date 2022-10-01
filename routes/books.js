@@ -11,6 +11,8 @@ router.post("/createBook", upload.single("file"), booksController.createBook);
 
 router.put("/likeBook/:id", booksController.likeBook);
 
+router.put("/holdBook/:id", booksController.holdBook);
+
 router.delete("/deleteBook/:id", booksController.deleteBook);
 
 module.exports = router;

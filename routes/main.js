@@ -9,6 +9,7 @@ const { ensureAuth, ensureGuest } = require("../middleware/auth");
 router.get("/", homeController.getIndex);
 router.get("/profile", ensureAuth, booksController.getProfile);
 router.get("/feed", ensureAuth, booksController.getFeed);
+router.get("/addabook", ensureAuth, booksController.getAddabook);
 router.get("/login", authController.getLogin);
 router.post("/login", authController.postLogin);
 router.get("/logout", authController.logout);

@@ -17,6 +17,14 @@ module.exports = {
     } catch (err) {
       console.log(err);
     }
+  },  
+  getAddabook: async (req, res) => {
+    try {
+      const books = await Book.find({ user: req.user.id });
+      res.render("addabook.ejs", { books: books, user: req.user });
+    } catch (err) {
+      console.log(err);
+    }
   },
   getBook: async (req, res) => {
     try {
@@ -30,7 +38,7 @@ module.exports = {
     try {
       // Upload image to cloudinary
       const result = await cloudinary.uploader.upload(req.file.path);
-
+      //const bookUser = await User.findById(req.user.id)
       await Book.create({
         title: req.body.title,
         image: result.secure_url,
@@ -38,9 +46,10 @@ module.exports = {
         author: req.body.author,
         likes: 0,
         user: req.user.id,
+        createdBy: req.user.userName,
       });
       console.log("Book has been added!");
-      res.redirect("/profile");
+      res.redirect("/addabook");
     } catch (err) {
       console.log(err);
     }
@@ -73,4 +82,20 @@ module.exports = {
       res.redirect("/profile");
     }
   },
+  holdBook: async (req, res) => {
+    try {
+      await Book.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          holdBook: holdBook.push(req.params.id),
+        }
+      );
+      console.log("On Hold, you are number"+holdBook.length+1);
+      res.redirect(`/book/${req.params.id}`);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  
 };
+

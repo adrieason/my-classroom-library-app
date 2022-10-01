@@ -2,11 +2,11 @@
 <div class="container">
   <div class="row justify-content-center mt-5">
     <div class="col-6">
-      <h2><strong>Title</strong>:<%= book.title %></h2>
-        <p><strong>Author</strong>:<%= book.author %></p>
+      <h2><strong>Title</strong>: <%= book.title %></h2>
+        <p><strong>Author</strong>: <%= book.author %></p>
       </div>
       <!--Want to add the name of the Teacher so student can find book-->
-      <p><strong>Teacher's Shelf</strong>:<%= book.user %></p>
+      <p><strong>Teacher's Shelf</strong>: <%= book.createdBy.charAt(0).toUpperCase() + book.createdBy.slice(1)  %></p>
 
       <img class="img-fluid" src="<%= book.image%>" />
       <div class="row justify-content-between">
@@ -27,11 +27,19 @@
           </form>
           <%}%>
 <!--adding the ability for users to check out book. visuals, button, need to add functionality -->
-         <%if(user.role == "Student"){ %>
+         <%if(user.role == "Student"){ %> <!--only students can see this button-->
               <button class="input input-bordered w-full max-w-xs" type="submit">CHECK OUT</button>
             </form>
             <%}%>
 
+            <%if(user.role == "Student"){ %><!--only students can see this button-->
+              <form
+              action="/book/holdBook/<%= book.id %>?_method=PUT"
+              method="PUT"
+            >
+              <button class="input input-bordered w-full max-w-xs"   type="submit">HOLD BOOK</button>
+            </form>
+            <%}%>
       </div>
     </div>
 
