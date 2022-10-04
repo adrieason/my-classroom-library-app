@@ -17,10 +17,6 @@ const BookSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  likes: {
-    type: Number,
-    required: true,
-  },
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
@@ -40,6 +36,15 @@ const BookSchema = new mongoose.Schema({
     }],
     default: [],
   },
+  checkout:{
+    type: Boolean,
+    default: false,
+  },  
+  checkoutBy:{
+    type: String,
+    ref: "User",
+  }  
+
 });
 
 module.exports = mongoose.model("Book", BookSchema);

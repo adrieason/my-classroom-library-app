@@ -86,8 +86,7 @@ module.exports = {
     try {
       await Book.findOneAndUpdate(
         { _id: req.params.id },
-        {
-          holdBook: holdBook.push(req.params.id),
+        {holdBook: holdBook.push(req.user.userName)
         }
       );
       console.log("On Hold, you are number"+holdBook.length+1);
@@ -96,6 +95,19 @@ module.exports = {
       console.log(err);
     }
   },
-  
+  checkoutBook: async (req, res) => {
+    try {
+      //find the book from the page we are on
+      await Book.findOneAndUpdate(
+        { _id: req.params.id },
+        { checkout: true } ,
+        { checkoutBy: req.user.userName},
+      );
+      console.log(req.user.userName + "Checked out the book");
+      res.redirect(`/profile`);
+    } catch (err) {
+      console.log(err);
+    }
+  },
 };
 
