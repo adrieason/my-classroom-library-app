@@ -47,6 +47,7 @@ module.exports = {
         likes: 0,
         user: req.user.id,
         createdBy: req.user.userName,
+        whereIsTheBook: req.user.userName,
       });
       console.log("Book has been added!");
       res.redirect("/addabook");
@@ -100,8 +101,22 @@ module.exports = {
       //find the book from the page we are on
       await Book.findOneAndUpdate(
         { _id: req.params.id },
-        { checkout: true } ,
-        { checkoutBy: req.user.userName},
+        { checkout: true,
+          whereIsTheBook: req.user.userName,},
+      );
+      console.log(req.user.userName + "Checked out the book");
+      res.redirect(`/profile`);
+    } catch (err) {
+      console.log(err);
+    }
+  },  
+  checkinBook: async (req, res) => {
+    try {
+      //find the book from the page we are on
+      await Book.findOneAndUpdate(
+        { _id: req.params.id },
+        { checkout: false,
+          whereIsTheBook: "Bookshelf",},
       );
       console.log(req.user.userName + "Checked out the book");
       res.redirect(`/profile`);

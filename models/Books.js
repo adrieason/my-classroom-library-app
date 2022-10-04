@@ -40,11 +40,10 @@ const BookSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },  
-  checkoutBy:{
+  whereIsTheBook:{
     type: String,
-    ref: "User",
+    default: "Bookshelf",
   }  
-
 });
 
 module.exports = mongoose.model("Book", BookSchema);

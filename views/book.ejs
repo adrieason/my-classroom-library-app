@@ -36,6 +36,24 @@
               <button class="input input-bordered w-full max-w-xs" type="submit">CHECK OUT</button>
             </form>
             <%}%>
+
+<!--adding the ability for users to check in book. visuals, button, need to add functionality -->
+<%if(user.role == "Student" && book.whereIsTheBook===user.userName){ %> <!--only students can see this button-->
+  <form
+  class="col-1"
+  action="/book/checkinBook/<%= book.id %>?_method=PUT"
+  method="POST"
+>
+      <button class="input input-bordered w-full max-w-xs" type="submit">CHECK IN</button>
+    </form>
+    <%}%>
+
+
+
+
+
+
+            
             <!--only student that has book checked out can see-->
             <!--<%if(user.role == "Student" && book.checkout==false){ %> 
               <form
@@ -47,7 +65,7 @@
                 </form>
                 <%}%>
               -->    
-            <%if(user.role == "Student" && book.checkout==true){ %><!--only students can see this button if book is checked out, and it's not checked out by them-->
+            <%if(user.role == "Student" && book.checkout==true && book.whereIsTheBook!==user.userName){ %><!--only students can see this button if book is checked out, and it's not checked out by them-->
               <form
               class="col-1"
               action="/book/holdBook/<%= book.id %>?_method=PUT"
