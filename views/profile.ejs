@@ -6,10 +6,25 @@
               <h2><strong>WELCOME <%= user.userName.toUpperCase() %>!!!</strong></h2>
               <!--<p><strong>Email</strong>: <%= user.email %></p>-->
               <%if(user.role == "Student"){ %>
-              <span>You currently have the following books checked out</span>
+              <span><strong>You currently have the following books checked out:</strong></span>
               <!--loop over all of the books this student has 'checked out'-->
+              <div class="container">
+                <div class="row justify-content-center mt-5">
+                  <ul class="row list-unstyled">
+                    <% for(var i=0; i<books.length; i++) {%>
+                      <% if (books[i].whereIsTheBook===user.userName){%>
+                      <li class="col-6 justify-content-between mt-5">
+                        <a href="/book/<%= books[i]._id%>">
+                          <img class="img-fluid" src="<%= books[i].image%>">
+                        </a>
+                      </li>
+                      <% } %>
 
-              
+                    <% } %>
+                    </ul>
+                </div>
+              </div>  
+
               <%}%>
 
           </div>

@@ -4,7 +4,9 @@ const Book = require("../models/Books");
 module.exports = {
   getProfile: async (req, res) => {
     try {
-      const books = await Book.find({ user: req.user.id });
+      const books = await Book.find().sort({ createdAt: "desc" }).lean();
+
+      //const books = await Book.find({ user: req.user.id });
       res.render("profile.ejs", { books: books, user: req.user });
     } catch (err) {
       console.log(err);
