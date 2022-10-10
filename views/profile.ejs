@@ -15,7 +15,8 @@
                       <% if (books[i].whereIsTheBook===user.userName){%>
                       <li class="col-6 justify-content-between mt-5">
                         <a href="/book/<%= books[i]._id%>">
-                          <img class="img-fluid" src="<%= books[i].image%>">
+                          <span><strong>Book <%= [i+1] %>:</strong></span><%= books[i].title %>
+                         <!-- <img class="img-fluid" src="<%= books[i].image%>">-->
                         </a>
                       </li>
                       <% } %>
