@@ -104,7 +104,9 @@ module.exports = {
       await Book.findOneAndUpdate(
         { _id: req.params.id },
         { checkout: true,
-          whereIsTheBook: req.user.userName,},
+          whereIsTheBook: req.user.userName,
+          checkoutTime: new Date,
+          }
       );
       console.log(req.user.userName + "Checked out the book");
       res.redirect(`/profile`);

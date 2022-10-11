@@ -3,26 +3,45 @@
   <div class="row mt-5">
       <div class="col-6">
           <div>
-              <h2><strong>WELCOME <%= user.userName.toUpperCase() %>!!!</strong></h2>
+              <h2><strong>WELCOME <%= user.userName.toUpperCase() %>!!!</strong></h2><br>
               <!--<p><strong>Email</strong>: <%= user.email %></p>-->
               <%if(user.role == "Student"){ %>
-              <span><strong>You currently have the following books checked out:</strong></span>
+              <span><strong>You currently have the following books checked out:</strong></span><br>
               <!--loop over all of the books this student has 'checked out'-->
               <div class="container">
-                <div class="row justify-content-center mt-5">
-                  <ul class="row list-unstyled">
+                <div class="overflow-x-auto">
+                  <table class="table table-compact w-full">
+                    <tr>
+                      <th>#</th>
+                      <th>Book</th>
+                      <th>Author</th>
+                      <th>Due Date</th>
+                    </tr>
+
+              
                     <% for(var i=0; i<books.length; i++) {%>
                       <% if (books[i].whereIsTheBook===user.userName){%>
-                      <li class="col-6 justify-content-between mt-5">
-                        <a href="/book/<%= books[i]._id%>">
-                          <span><strong>Book <%= [i+1] %>:</strong></span><%= books[i].title %>
-                         <!-- <img class="img-fluid" src="<%= books[i].image%>">-->
+                        <tr>
+                          <td> <%= [i+1] %></td>
+                          <td><a href="/book/<%= books[i]._id%>"><%= books[i].title %></a></td>
+                          <td><%= books[i].author %></td>
+                          <td><%= books[i].checkoutTime %></td>
+
+                        </tr>
+
+
+
+
                         </a>
                       </li>
                       <% } %>
 
+
+
+                     
+
                     <% } %>
-                    </ul>
+                  </table>
                 </div>
               </div>  
 

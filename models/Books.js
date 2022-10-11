@@ -43,7 +43,11 @@ const BookSchema = new mongoose.Schema({
   whereIsTheBook:{
     type: String,
     default: "Bookshelf",
-  }  
+  },  
+  checkoutTime: {
+    type: Date,
+    default: Date.now,
+  }, 
 });
 
 module.exports = mongoose.model("Book", BookSchema);
