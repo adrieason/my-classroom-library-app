@@ -44,8 +44,8 @@ const BookSchema = new mongoose.Schema({
     type: String,
     default: "Bookshelf",
   },  
-  checkoutTime: {
-    type: Date,
+  dueDate: {
+    type: String,
     default: Date.now,
   }, 
 });

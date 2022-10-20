@@ -1,5 +1,7 @@
 const cloudinary = require("../middleware/cloudinary");
 const Book = require("../models/Books");
+var add = require('date-fns/add')
+var moment = require('moment');
 
 module.exports = {
   getProfile: async (req, res) => {
@@ -105,9 +107,12 @@ module.exports = {
         { _id: req.params.id },
         { checkout: true,
           whereIsTheBook: req.user.userName,
-          checkoutTime: new Date,
+          dueDate: moment().add(14, 'days').format('dddd MMM Do') ,
           }
       );
+
+
+      
       console.log(req.user.userName + "Checked out the book");
       res.redirect(`/profile`);
     } catch (err) {
