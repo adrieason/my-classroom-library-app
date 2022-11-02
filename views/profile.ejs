@@ -1,13 +1,16 @@
 <%- include('partials/header') -%>
+<div class="bg-white">
+  <div class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
 <div class="container">
   <div class="row mt-5">
       <div class="col-6">
           <div>
-              <h2><strong>WELCOME <%= user.userName.toUpperCase() %>!!!</strong></h2><br>
+              <h2><strong>Welcome <%= user.userName[0].toUpperCase()+user.userName.substring(1)%>!!!</strong></h2><br>
               <!--<p><strong>Email</strong>: <%= user.email %></p>-->
               <%if(user.role == "Student"){ %>
               <span><strong>You currently have the following books checked out:</strong></span><br>
               <!--loop over all of the books this student has 'checked out'-->
+              <br>
               <div class="container">
                 <div class="overflow-x-auto">
                   <table class="table table-compact w-full">
@@ -47,34 +50,7 @@
               <%}%>
 
           </div>
-<!--only users with the assigned role of teacher can Add a Book
 
-<%if(user.role == "Teacher"){ %>
-
-
-          <div class="mt-5">
-            <h2>Add a Book</h2>
-            <form action="/book/createBook" enctype="multipart/form-data" method="POST">
-              <div class="mb-3">
-                  <label for="title" class="form-label">Title</label>
-                  <input type="text" class="input input-bordered w-full max-w-xs" id="title" name="title">
-              </div>
-              <div class="mb-3">
-                <label for="author" class="form-label">Author</label>
-                <textarea class="input input-bordered w-full max-w-xs" id="author" name="author"></textarea>
-              </div>
-              <div class="mb-3">
-                <label for="imgUpload" class="form-label">Image</label>
-                <input type="file"  id="imageUpload" name="file">
-              </div>
-              <button type="submit" class="inline-block cursor-pointer rounded-md bg-gray-800 px-4 py-3 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-900"  value="Upload">Submit</button>
-            </form>
-          </div>
-
-          end of role===teacher only section
-
-
-            <%}%>-->
 
       </div>
       <div class="col-6">
@@ -87,6 +63,9 @@
           </li>
         <% } %>
         </ul>-->
+
+
+
 
         <div class="row justify-content-center mt-5">
           <%if(user.role == "Teacher"){ %>

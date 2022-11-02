@@ -1,4 +1,8 @@
 <%- include('partials/header') -%>
+
+
+<div class="bg-white">
+  <div class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
 <div class="container">
   <div class="row justify-content-center mt-5">
     <div class="col-6">
@@ -6,10 +10,10 @@
         <p><strong>Author</strong>: <%= book.author %></p>
       </div>
       <!--Want to add the name of the Teacher so student can find book-->
-      <p><strong>Teacher's Shelf</strong>: <%= book.createdBy.charAt(0).toUpperCase() + book.createdBy.slice(1)  %></p>
+      <p><strong>Teacher's Shelf</strong>: <%= book.createdBy.charAt(0).toUpperCase() + book.createdBy.slice(1)  %></p><br>
 
       <img class="img-fluid" src="<%= book.image%>" />
-      <div class="row justify-content-between">
+      <div class="row justify-content-between"><br>
 
         <!--<h3 class="col-3">Likes: <%= book.likes %></h3>-->
         <!--need to add usabilit to this delete button-->
@@ -44,7 +48,7 @@
   action="/book/checkinBook/<%= book.id %>?_method=PUT"
   method="POST"
 >
-      <button class="input input-bordered w-full max-w-xs" type="submit">CHECK IN</button>
+      <button class="btn btn-primary" type="submit">CHECK IN</button>
     </form>
     <%}%>
 

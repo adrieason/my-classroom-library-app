@@ -9,7 +9,7 @@ module.exports = {
       const books = await Book.find().sort({ createdAt: "desc" }).lean();
 
       //const books = await Book.find({ user: req.user.id });
-      res.render("profile.ejs", { books: books, user: req.user });
+      res.render("profile.ejs", { books: books, user: req.user,  });
     } catch (err) {
       console.log(err);
     }
