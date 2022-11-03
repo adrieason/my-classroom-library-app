@@ -5,11 +5,14 @@
   <div class="row mt-5">
       <div class="col-6">
           <div>
+
+            <!--Welcomes the User to the site!-->
               <h2><strong>Welcome <%= user.userName[0].toUpperCase()+user.userName.substring(1)%>!!!</strong></h2><br>
-              <!--<p><strong>Email</strong>: <%= user.email %></p>-->
+<!--if the user is a student they get a list of books the have checked out -->
+
               <%if(user.role == "Student"){ %>
               <span><strong>You currently have the following books checked out:</strong></span><br>
-              <!--loop over all of the books this student has 'checked out'-->
+              <!--loop over all of the books this student has 'checked out' into a table-->
               <br>
               <div class="container">
                 <div class="overflow-x-auto">
@@ -50,6 +53,17 @@
               <%}%>
 
           </div>
+<br>
+          <span>You have read <%= user.booksRead%> book<% if (user.booksRead!==1){%>s<% } %> this year.<span><br><br>
+<!--add feature for kids to earn badges after a certain number of books are read -->
+<h2><b>BADGES!</b></h2>
+
+<% if (user.booksRead>=0){%><img src="img/jumping.png"><% } %> 
+<% if (user.booksRead>1){%><img src="img/ace.png"><% } %> 
+<% if (user.booksRead>5){%><img src="img/superb.png"><% } %> 
+<% if (user.booksRead>0){%><img src="img/bookworm.png"><% } %> 
+<% if (user.booksRead>15){%><img src="img/outstanding.png"><% } %> 
+
 
 
       </div>

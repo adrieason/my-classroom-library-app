@@ -1,5 +1,6 @@
 const cloudinary = require("../middleware/cloudinary");
 const Book = require("../models/Books");
+const User = require("../models/User");
 var add = require('date-fns/add')
 var moment = require('moment');
 
@@ -125,7 +126,14 @@ module.exports = {
       await Book.findOneAndUpdate(
         { _id: req.params.id },
         { checkout: false,
-          whereIsTheBook: "Bookshelf",},
+          whereIsTheBook: "Bookshelf",
+        },
+      );
+      //find the  user that is logged in 
+      await User.findOneAndUpdate(
+        { _id: req.user.id },
+        {  $inc: { booksRead: 1 },
+        },
       );
       console.log(req.user.userName + "Checked out the book");
       res.redirect(`/profile`);
