@@ -54,6 +54,9 @@
 
           </div>
 <br>
+<%if(user.role == "Student"){ %>
+
+
           <span>You have read <%= user.booksRead%> book<% if (user.booksRead!==1){%>s<% } %> this year.<span><br><br>
 <!--add feature for kids to earn badges after a certain number of books are read -->
 <h2><b>BADGES!</b></h2>
@@ -64,7 +67,7 @@
 <% if (user.booksRead>0){%><img src="img/bookworm.png"><% } %> 
 <% if (user.booksRead>15){%><img src="img/outstanding.png"><% } %> 
 
-
+<%}%>
 
       </div>
       <div class="col-6">
@@ -86,7 +89,7 @@
           <a class="btn btn-primary" href="/addabook">Add Books to the Shelf</a>
           <%}%>
 
-          <a class="btn btn-primary" href="/feed">Look for More Books</a>
+          <a class="btn btn-primary" href="/feed">Look for Books</a>
         </div>  
       </div>  
     </div>

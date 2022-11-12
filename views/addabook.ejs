@@ -5,7 +5,7 @@
 
 <!--NEXT GOAL: TO PULL IN API FOR TEACHER TO PULL BOOKS FROM AND ADD TO API DATABASE!! -->
   <div class="mt-5">
-    <h2>Add a Book</h2>
+    <h2>Create a Book</h2>
     <form action="/book/createBook" enctype="multipart/form-data" method="POST">
       <div class="mb-3">
           <label for="title" class="form-label">Title</label>
@@ -21,13 +21,25 @@
       </div>
       <button type="submit" class="inline-block cursor-pointer rounded-md bg-gray-800 px-4 py-3 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-900"  value="Upload">Submit</button>
     </form>
-  </div>
 
-  <!--end of role===teacher only section-->
-  <a class="btn btn-primary" href="/feed">Look for More Books</a>
+  </div>
+<br> <!--
+  <h2>Find a Book to add</h2>
+  <section>		
+		<input type="text" id="isbninput" class="input input-bordered w-full max-w-xs">
+		<button class="btn btn-primary btn" type="button" name="button" id="isbnbutton">Add Book</button>
+		<h2></h2>
+		<h3></h3>
+		<h4></h2>
+		<h2></h2>
+</section>-->
+  <!--end of role===teacher only section--><br>
+  <a class="btn btn-primary" href="/feed">Go to Bookshelf</a>
 
 
     <%}%>
-
+		<script type="text/javascript" src="../public/js/main.js"></script>
 </div>
+
+
 <%- include('partials/footer') -%>
