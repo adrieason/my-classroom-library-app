@@ -120,7 +120,7 @@ module.exports = {
       console.log(err);
     }
   },  
-  checkinBook: async (req, res) => {
+  checkinBookRead: async (req, res) => {
     try {
       //find the book from the page we are on
       await Book.findOneAndUpdate(
@@ -135,6 +135,22 @@ module.exports = {
         {  $inc: { booksRead: 1 },
         },
       );
+      console.log(req.user.userName + "Checked out the book");
+      res.redirect(`/profile`);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  checkinBookDidntRead: async (req, res) => {
+    try {
+      //find the book from the page we are on
+      await Book.findOneAndUpdate(
+        { _id: req.params.id },
+        { checkout: false,
+          whereIsTheBook: "Bookshelf",
+        },
+      );
+
       console.log(req.user.userName + "Checked out the book");
       res.redirect(`/profile`);
     } catch (err) {

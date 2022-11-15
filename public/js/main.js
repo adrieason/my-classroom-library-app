@@ -13,7 +13,7 @@ fetch(`https://openlibrary.org/isbn/${isbn}.json`)
     .then(res => res.json()) // parse response as JSON
     .then(data => {
       console.log(data)
-      document.getElementById('titleisbn').innerText = data.title
+      document.getElementById('title').innerText = data.title
       let author = data.authors[0].key
       console.log(author)
       document.getElementById('coverisbn').innerHTML = `<img src="https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg">`
@@ -22,7 +22,7 @@ fetch(`https://openlibrary.org/isbn/${isbn}.json`)
       .then(res => res.json()) // parse response as JSON
       .then(data => {
         console.log(data.name)
-        document.getElementById('authorisbn').innerText = data.name
+        document.getElementById('author').innerText = data.name
       })
     })
     .catch(err => {

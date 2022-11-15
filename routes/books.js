@@ -15,7 +15,9 @@ router.put("/holdBook/:id", booksController.holdBook);
 
 router.put("/checkoutBook/:id", booksController.checkoutBook);
 
-router.put("/checkinBook/:id", booksController.checkinBook);
+router.put("/checkinBookRead/:id", booksController.checkinBookRead);
+
+router.put("/checkinBookDidntRead/:id", booksController.checkinBookDidntRead);
 
 router.delete("/deleteBook/:id", booksController.deleteBook);
 

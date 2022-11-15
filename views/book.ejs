@@ -45,11 +45,19 @@
 <%if(user.role == "Student" && book.whereIsTheBook===user.userName){ %> <!--only students can see this button-->
   <form
   class="col-1"
-  action="/book/checkinBook/<%= book.id %>?_method=PUT"
+  action="/book/checkinBookRead/<%= book.id %>?_method=PUT"
   method="POST"
 >
-      <button class="btn btn-primary" type="submit">CHECK IN</button>
-    </form>
+      <button class="btn btn-primary" type="submit">I READ THE BOOK + CHECK IN</button>
+    </form>  
+    
+    <form
+    class="col-1"
+    action="/book/checkinBookDidntRead/<%= book.id %>?_method=PUT"
+    method="POST"
+  >
+        <button class="btn btn-primary" type="submit">I DIDN'T READ THE BOOK + CHECK IN</button>
+      </form>
     <%}%>
 
 
