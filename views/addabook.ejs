@@ -9,7 +9,7 @@
     <form action="/book/createBook" enctype="multipart/form-data" method="POST">
       <div class="mb-3">
           <label for="title" class="form-label">Title</label>
-          <textarea type="text" class="input input-bordered w-full max-w-xs" id="title" name="title"></textarea>
+          <textarea type="text" class="input input-bordered w-full max-w-xs" id="title" name="title">hihihi</textarea>
       </div>
       <div class="mb-3">
         <label for="author" class="form-label">Author</label>
@@ -23,15 +23,18 @@
     </form>
 
   </div>
+  <!--You can do it the same way you would POST data from a frontend, just GET the data from xyz API instead and form it into the structure your DB expects
+-->
 <br> 
   <h2>Find a Book to add</h2>
   <section>		
-		<input placeholder="Enter ISBN number" type="text" id="isbninput" class="input input-bordered w-full max-w-xs">
-		<button class="btn btn-primary btn" type="button" name="button" id="isbnbutton">Add Book</button>
-		<h2 id="titleisbn"></h2>
-		<h3 id="authorisbn"></h3>
-		<h4 id="coverisbn"></h2>
-		<h2></h2>
+    <form action="/book/createBookByISBN" enctype="multipart/form-data" method="POST">
+      <div class="mb-3">
+          <label for="isbn" class="form-label">isbn</label>
+          <textarea type="text" class="input input-bordered w-full max-w-xs" id="isbn" name="isbn"></textarea>
+      </div>
+      <button type="submit" class="inline-block cursor-pointer rounded-md bg-gray-800 px-4 py-3 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-900"  value="Upload">Submit</button>
+    </form>
 </section>
   <!--end of role===teacher only section--><br>
   <a class="btn btn-primary" href="/feed">Go to Bookshelf</a>

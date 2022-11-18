@@ -59,7 +59,48 @@ module.exports = {
     } catch (err) {
       console.log(err);
     }
-  },
+  }, 
+  createBookByISBN: async (req, res) => {
+    try {
+      let isbn = req.body.isbn
+      let titleisbn
+      let authorKey
+      let coverisbn
+      let authorisbn
+      console.log(isbn)
+      fetch(`https://openlibrary.org/isbn/${isbn}.json`) 
+      .then(res => res.json()) // parse response as JSON
+      .then(data => {
+      titleisbn = data.title
+      authorKey = data.authors[0].key
+      coverisbn = `https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg`
+
+      fetch(`https://openlibrary.org${authorKey}.json`)
+      .then(res => res.json()) // parse response as JSON
+      .then(data => {
+      authorisbn = data.name
+      })
+    })
+      // Upload image to cloudinary
+
+      const result = await cloudinary.uploader.upload(`https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg`);
+      //const bookUser = await User.findById(req.user.id)
+      await Book.create({
+        title: titleisbn,
+        image: result.secure_url,
+        cloudinaryId: result.public_id,
+        author: authorisbn,
+        likes: 0,
+        user: req.user.id,
+        createdBy: req.user.userName,
+        whereIsTheBook: req.user.userName,
+      });
+      console.log("Book has been added!");
+      res.redirect("/addabook");
+    } catch (err) {
+      console.log(err);
+    }
+  }, 
   likeBook: async (req, res) => {
     try {
       await Book.findOneAndUpdate(
@@ -111,9 +152,6 @@ module.exports = {
           dueDate: moment().add(14, 'days').format('dddd MMM Do') ,
           }
       );
-
-
-      
       console.log(req.user.userName + "Checked out the book");
       res.redirect(`/profile`);
     } catch (err) {
