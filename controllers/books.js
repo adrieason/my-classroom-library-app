@@ -73,6 +73,7 @@ module.exports = {
       .then(data => {
       titleisbn = data.title
       authorKey = data.authors[0].key
+
       coverisbn = `https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg`
 
       fetch(`https://openlibrary.org${authorKey}.json`)
