@@ -11,6 +11,8 @@ router.post("/createBook", upload.single("file"), booksController.createBook);
 
 router.post("/createBookByISBN", upload.single("file"), booksController.createBookByISBN);
 
+router.post("/searchBooks", booksController.searchBooks)
+
 router.put("/likeBook/:id", booksController.likeBook);
 
 router.put("/holdBook/:id", booksController.holdBook);

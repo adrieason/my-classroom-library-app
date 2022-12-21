@@ -196,5 +196,22 @@ module.exports = {
       console.log(err);
     }
   },
+  searchBooks: async (req, res) => {
+    try {
+      console.log('hi')
+      //find the book from the page we are on
+      await Book.findOneAndUpdate(
+        { _id: req.params.id },
+        { checkout: false,
+          whereIsTheBook: "Bookshelf",
+        },
+      );
+
+      console.log(req.user.userName + "Checked out the book");
+      res.redirect(`/profile`);
+    } catch (err) {
+      console.log(err);
+    }
+  },
 };
 

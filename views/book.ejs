@@ -48,7 +48,7 @@
   action="/book/checkinBookRead/<%= book.id %>?_method=PUT"
   method="POST"
 >
-      <button class="btn btn-primary" type="submit">I READ THE BOOK + CHECK IN</button>
+      <button class="btn btn-primary" type="submit">I READ THE BOOK</button>
     </form>  
     
     <form
@@ -56,7 +56,7 @@
     action="/book/checkinBookDidntRead/<%= book.id %>?_method=PUT"
     method="POST"
   >
-        <button class="btn btn-primary" type="submit">I DIDN'T READ THE BOOK + CHECK IN</button>
+        <button class="btn btn-primary" type="submit">I DIDN'T READ THE BOOK, BUT I WANT TO CHECK IT IN</button>
       </form>
     <%}%>
 
