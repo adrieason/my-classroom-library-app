@@ -58,7 +58,6 @@ app.use(flash());
 app.use("/", mainRoutes);
 app.use("/book", bookRoutes);
 
-//search function 
 
 //Server Running
 app.listen(process.env.PORT, () => {

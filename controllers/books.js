@@ -8,9 +8,9 @@ module.exports = {
   getProfile: async (req, res) => {
     try {
       const books = await Book.find().sort({ createdAt: "desc" }).lean();
-
+      const users = await User.find().sort({ booksRead: "desc" }).lean();
       //const books = await Book.find({ user: req.user.id });
-      res.render("profile.ejs", { books: books, user: req.user,  });
+      res.render("profile.ejs", { books: books, userme: req.user, users: users });
     } catch (err) {
       console.log(err);
     }
@@ -182,23 +182,6 @@ module.exports = {
   },
   checkinBookDidntRead: async (req, res) => {
     try {
-      //find the book from the page we are on
-      await Book.findOneAndUpdate(
-        { _id: req.params.id },
-        { checkout: false,
-          whereIsTheBook: "Bookshelf",
-        },
-      );
-
-      console.log(req.user.userName + "Checked out the book");
-      res.redirect(`/profile`);
-    } catch (err) {
-      console.log(err);
-    }
-  },
-  searchBooks: async (req, res) => {
-    try {
-      console.log('hi')
       //find the book from the page we are on
       await Book.findOneAndUpdate(
         { _id: req.params.id },
