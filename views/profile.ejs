@@ -94,6 +94,50 @@
           </div>
 <br>
 <%if(userme.role == "Student"){ %>
+  <span class="text-3xl font-bold"><strong>You currently have the following books on hold:</strong></span><br>
+  <!--loop over all of the books this student has 'checked out' into a table-->
+  <br>
+  <div class="container">
+    <div class="overflow-x-auto">
+      <table class="table table-compact w-full">
+        <tr>
+          <th>Book</th>
+          <th>Author</th>
+          <th>Spot Number</th>
+        </tr>
+
+  
+        <% for(var i=0; i<books.length; i++) {%>
+          <% if (books[i].holdBook.includes(userme.userName)===true){%>
+            <tr>
+              <td><a href="/book/<%= books[i]._id%>"><%= books[i].title %></a></td>
+              <td><%= books[i].author %></td>
+
+              <td><%= books[i].holdBook.indexOf(userme.userName)+1 %></td>
+
+            </tr>
+
+
+
+
+            </a>
+          </li>
+          <% } %>
+
+
+
+         
+
+        <% } %>
+      </table>
+    </div>
+  </div>  
+
+ <%}%>
+
+</div>
+<br>
+<%if(userme.role == "Student"){ %>
 
 
 <!--add feature for kids to earn badges after a certain number of books are read -->
