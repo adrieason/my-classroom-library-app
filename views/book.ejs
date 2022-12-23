@@ -43,6 +43,8 @@
 
 <!--adding the ability for users to check in book. visuals, button, need to add functionality -->
 <%if(user.role == "Student" && book.whereIsTheBook===user.userName){ %> <!--only students can see this button-->
+
+
   <form
   class="col-1"
   action="/book/checkinBookRead/<%= book.id %>?_method=PUT"
@@ -78,12 +80,13 @@
                 <%}%>
               -->    
             <%if(user.role == "Student" && book.checkout==true && book.whereIsTheBook!==user.userName){ %><!--only students can see this button if book is checked out, and it's not checked out by them-->
+            <span>This book is currently not available. </span>
               <form
               class="col-1"
               action="/book/holdBook/<%= book.id %>?_method=PUT"
               method="POST"
             >
-              <button class="input input-bordered w-full max-w-xs"   type="submit">HOLD BOOK</button>
+              <button class="input input-bordered w-full max-w-xs"   type="submit">Place Hold</button>
             </form>
             <%}%>
       </div>

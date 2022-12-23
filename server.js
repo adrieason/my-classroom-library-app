@@ -10,7 +10,7 @@ const logger = require("morgan");
 const connectDB = require("./config/database");
 const mainRoutes = require("./routes/main");
 const bookRoutes = require("./routes/books");
-
+const Book = require("./models/Books");
 
 
 //Use .env file in config folder
@@ -53,11 +53,24 @@ app.use(passport.session());
 
 //Use flash messages for errors, info, ect...
 app.use(flash());
-
+ 
 //Setup Routes For Which The Server Is Listening
-app.use("/", mainRoutes);
+app.use("/", mainRoutes);   
 app.use("/book", bookRoutes);
 
+//search bar 
+app.get("/search/:key", async (req,resp)=>  {
+  try{
+  let e =  await Book.find(  {
+    "$or" : [
+      {title:{$regex:req.params.key}}
+    ] 
+  })
+  resp.send(e);  
+
+}catch{
+  console.log(err);
+}}); 
 
 //Server Running
 app.listen(process.env.PORT, () => {
