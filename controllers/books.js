@@ -134,10 +134,10 @@ module.exports = {
     try {
       await Book.findOneAndUpdate(
         { _id: req.params.id },
-        {holdBook: holdBook.push(req.user.userName)
+        {
+          $push: { holdBook: (req.user.userName) },
         }
       );
-      console.log("On Hold, you are number"+holdBook.length+1);
       res.redirect(`/book/${req.params.id}`);
     } catch (err) {
       console.log(err);

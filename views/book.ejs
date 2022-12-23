@@ -79,7 +79,7 @@
                 </form>
                 <%}%>
               -->    
-            <%if(user.role == "Student" && book.checkout==true && book.whereIsTheBook!==user.userName){ %><!--only students can see this button if book is checked out, and it's not checked out by them-->
+            <%if(user.role == "Student" && book.checkout==true && book.whereIsTheBook!==user.userName && book.holdBook.includes(user.userName)===false){ %><!--only students can see this button if book is checked out, and it's not checked out by them-->
             <span>This book is currently not available. </span>
               <form
               class="col-1"
@@ -91,6 +91,13 @@
             <%}%>
       </div>
     </div>
+
+    <%if(book.holdBook.includes(user.userName)===true){ %><!--only students can see this button if book is checked out, and it's not checked out by them-->
+    <span> You have this book on hold you are number # <%=  (book.holdBook.indexOf(user.userName))+1  %> in line.</span>
+    <%}%>
+
+
+
 
     <div class="col-6 mt-5">
       <a class="btn btn-primary" href="/profile">Return to Profile</a>
