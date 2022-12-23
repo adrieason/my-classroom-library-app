@@ -143,6 +143,36 @@ module.exports = {
       console.log(err);
     }
   },
+  checkoutAndRemoveHold: async (req, res) => {
+    try {
+      await Book.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          $pop: { holdBook: -1 },
+        },
+        { checkout: true,
+          whereIsTheBook: req.user.userName,
+          dueDate: moment().add(14, 'days').format('dddd MMM Do') ,
+          },
+      );
+      res.redirect(`/book/${req.params.id}`);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  removeHold: async (req, res) => {
+    try {
+      await Book.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          $pull: { holdBook: req.user.userName }, //need to change to remove just the id of the person requesting to be removed from the hold list
+        },
+      );
+      res.redirect(`/book/${req.params.id}`);
+    } catch (err) {
+      console.log(err);
+    }
+  },
   checkoutBook: async (req, res) => {
     try {
       //find the book from the page we are on

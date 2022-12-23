@@ -31,7 +31,7 @@
           </form>
           <%}%>
 <!--adding the ability for users to check out book. visuals, button, need to add functionality -->
-         <%if(user.role == "Student" && book.checkout==false){ %> <!--only students can see this button-->
+         <%if(user.role == "Student" && book.checkout==false && book.holdBook.length===0){ %> <!--only students can see this button-->
           <form
           class="col-1"
           action="/book/checkoutBook/<%= book.id %>?_method=PUT"
@@ -91,12 +91,56 @@
             <%}%>
       </div>
     </div>
+    <%if(book.holdBook.includes(user.userName)===true){ %><!--button to remove hold-->
+      <form
+      class="col-1"
+      action="/book/removeHold/<%= book.id %>?_method=PUT"
+      method="POST"
+    >
+      <button class="input input-bordered w-full max-w-xs"   type="submit">Remove Hold</button>
+    </form>
+    <%}%>
 
-    <%if(book.holdBook.includes(user.userName)===true){ %><!--only students can see this button if book is checked out, and it's not checked out by them-->
+    
+    <%if(book.holdBook.includes(user.userName)===true && book.checkout==true){ %><!--only students can see this button if book is checked out, and it's not checked out by them-->
     <span> You have this book on hold you are number # <%=  (book.holdBook.indexOf(user.userName))+1  %> in line.</span>
     <%}%>
 
+    <%if(book.holdBook[0]===(user.userName) && book.checkout==false){ %><!--only students can see this button if book is checked out, and it's not checked out by them-->
+    <form
+    class="col-1"
+    action="/book/checkoutAndRemoveHold/<%= book.id %>?_method=PUT"
+    method="POST"
+  >
+        <button class="input input-bordered w-full max-w-xs" type="submit">CHECK OUT</button>
+      </form>
 
+    
+    <span>Yay, you are off the hold list! You can now check out the book!</span>
+    <%}%>
+
+<div>
+  <br>
+  <%if(user.role == "Teacher" && book.holdBook.length>0){ %><!--only students can see this button if book is checked out, and it's not checked out by them-->
+
+  <h4 class="text-1xl font-bold">The following students have this book on hold:</h4>
+<ol class="list-decimal">
+  <% for(var i=0; i<book.holdBook.length; i++) {%>
+   <li><%=book.holdBook[i]%></li>
+<% } %>
+
+  
+</ol>
+
+  <%}%>
+  <%if(user.role == "Teacher" && book.holdBook.length===0){ %><!--only students can see this button if book is checked out, and it's not checked out by them-->
+
+  <h4 class="text-1xl font-bold">No one has this book on hold.</h4>
+
+
+  <%}%>
+  
+</div>
 
 
     <div class="col-6 mt-5">
