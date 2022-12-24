@@ -79,8 +79,14 @@
                 </form>
                 <%}%>
               -->    
-            <%if(user.role == "Student" && book.checkout==true && book.whereIsTheBook!==user.userName && book.holdBook.includes(user.userName)===false){ %><!--only students can see this button if book is checked out, and it's not checked out by them-->
+            <%if(user.role == "Student" && book.checkout==true && book.whereIsTheBook!==user.userName && book.holdBook.includes(user.userName)===false|| user.role == "Student" && book.checkout==false && book.holdBook.length>0 && book.holdBook.includes(user.userName)===false){ %><!--only students can see this button if book is checked out, and it's not checked out by them-->
+            <%if(user.role == "Student" && book.checkout==true && book.whereIsTheBook!==user.userName && book.holdBook.includes(user.userName)===false){ %>
             <span>This book is currently not available. </span>
+            <%}%>
+            <%if(user.role == "Student" && book.checkout==false && book.holdBook.length>0){ %>
+              <span> There is currently a hold list of <%= book.holdBook.length %> student<%if(book.holdBook.length>1){ %>s<%}%>. </span>
+              <%}%>
+
               <form
               class="col-1"
               action="/book/holdBook/<%= book.id %>?_method=PUT"
@@ -89,6 +95,7 @@
               <button class="input input-bordered w-full max-w-xs"   type="submit">Place Hold</button>
             </form>
             <%}%>
+            
       </div>
     </div>
     <%if(book.holdBook.includes(user.userName)===true){ %><!--button to remove hold-->

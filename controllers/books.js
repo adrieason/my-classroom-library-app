@@ -150,10 +150,10 @@ module.exports = {
         {
           $pop: { holdBook: -1 },
         },
-        { checkout: true,
+        { checkout: true, 
           whereIsTheBook: req.user.userName,
           dueDate: moment().add(14, 'days').format('dddd MMM Do') ,
-          },
+          }
       );
       res.redirect(`/book/${req.params.id}`);
     } catch (err) {

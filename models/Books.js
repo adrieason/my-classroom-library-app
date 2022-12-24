@@ -34,7 +34,7 @@ const BookSchema = new mongoose.Schema({
       type: String,
       ref: "User",  
     }],
-    default: [],
+    default: [], 
   },
   checkout:{
     type: Boolean,
