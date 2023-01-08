@@ -1,7 +1,6 @@
 <%- include('partials/header') -%>
-    <main class="container">
-        <div class="row justify-content-center">
-            <section class="col-6 mt-5">
+<div class="hero min-h-screen bg-base-200">
+  <div class="hero-content flex-col lg:flex-row-reverse">
                 <% if (locals.messages.errors) { %>
                     <% messages.errors.forEach( el => { %>
                         <div class="alert alert-warning shadow-lg"><%= el.msg %></div>
@@ -12,6 +11,9 @@
                         <div class="alert alert-warning shadow-lg"><%= el.msg %></div>
                     <% }) %>    
                 <% } %>
+                <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                  <div class="card-body">
+                    <div class="form-control">
                 <form action="/signup" method="POST">
                     <div class="mb-3">
                         <label for="userName" class="form-label">User Name</label>
@@ -40,7 +42,7 @@
 
                     <div class="mb-3">
                       <label for="password" class="form-label">Password</label>
-                      <input type="password"  id="password" name="password">
+                      <input type="password"  class="input input-bordered w-full max-w-xs" id="password" name="password">
                     </div>
                     <div class="mb-3">
                         <label for="confirmPassword" class="form-label">Confirm Password</label>
@@ -48,8 +50,9 @@
                       </div>
                     <button type="submit" class="inline-block cursor-pointer rounded-md bg-gray-800 px-4 py-3 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-900">Submit</button>
                   </form>
-            </section>
-        </div>
-    </main>
-
+                </div>
+              </div>
+            </div>
+                </div>
+              </div>
 <%- include('partials/footer') -%>
