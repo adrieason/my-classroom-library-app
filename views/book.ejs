@@ -43,23 +43,10 @@
 
 <!--adding the ability for users to check in book. visuals, button, need to add functionality -->
 <%if(user.role == "Student" && book.whereIsTheBook===user.userName){ %> <!--only students can see this button-->
+  <label for="my-modal-6" class="btn">return book</label>
 
 
-  <form
-  class="col-1"
-  action="/book/checkinBookRead/<%= book.id %>?_method=PUT"
-  method="POST"
->
-      <button class="btn btn-primary" type="submit">I READ THE BOOK</button>
-    </form>  
-    
-    <form
-    class="col-1"
-    action="/book/checkinBookDidntRead/<%= book.id %>?_method=PUT"
-    method="POST"
-  >
-        <button class="btn btn-primary" type="submit">I DIDN'T READ THE BOOK, BUT I WANT TO CHECK IT IN</button>
-      </form>
+
     <%}%>
 
 
@@ -119,7 +106,7 @@
     action="/book/checkoutAndRemoveHold/<%= book.id %>?_method=PUT"
     method="POST"
   >
-        <button class="input input-bordered w-full max-w-xs" type="submit">CHECK OUT</button>
+        <button class="input input-bordered w-full max-w-xs" type="submit">Check Out</button>
       </form>
 
     
@@ -157,4 +144,29 @@
   </div>
 </div>
 
+
+<input type="checkbox" id="my-modal-6" class="modal-toggle" />
+<div class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box">
+    <h3 class="font-bold text-lg">Did you read the book?</h3>
+    <p class="py-4"></p>
+    <div class="modal-action">
+      <form
+      class="col-1"
+      action="/book/checkinBookRead/<%= book.id %>?_method=PUT"
+      method="POST"
+    >
+          <button class="btn btn-primary" type="submit">Yes, I read the book.</button>
+        </form>  
+        
+        <form
+        class="col-1"
+        action="/book/checkinBookDidntRead/<%= book.id %>?_method=PUT"
+        method="POST"
+      >
+            <button class="btn btn-primary" type="submit">No, I didn't read the book.</button>
+          </form>
+    </div>
+  </div>
+</div>
 <%- include('partials/footer') -%>
