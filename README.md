@@ -9,8 +9,8 @@ Here is a link to the website: [https://app.cyclic.sh/#/app/adrieason-my-classro
 HTML, CSS, JavaScript, Node.js, Express, DaisyUI, tailwindcss, 
 
 # Future add ons
-<input type="checkbox">Students putting books on hold 
-<input type="checkbox"> Teacher ability to view/print off a list of books that each student has checked out 
+- Students putting books on hold 
+- Teacher ability to view/print off a list of books that each student has checked out 
 - Ability for students to easily search for books using a search bar 
 - Using Clever badges (QR codes) for younger students to log in without typing
 - Sorting books by reading level 
