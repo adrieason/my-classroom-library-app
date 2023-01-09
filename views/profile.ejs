@@ -1,20 +1,29 @@
 <%- include('partials/header') -%>
+<!--quick math to determine how many books the user logged in has checked out and on hold to determine what data shows on the page-->
+<% 
+let booksCheckedOut = 0
+let booksOnHold = 0
+for(var i=0; i<books.length; i++) {
+  if (books[i].whereIsTheBook===userme.userName){
+    booksCheckedOut +=1
+    }
+  if (books[i].holdBook.includes(userme.userName)===true){
+    booksOnHold += 1
+  }
+  }%>
+
+<!--Welcomes the User to the site!-->
 <div class="bg-white">
-  <div class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+<div class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
 <div class="container">
   <div class="row mt-5">
       <div class="col-6">
           <div>
-                        <!--Welcomes the User to the site!-->
-
             <h1 class="text-5xl font-bold">Hello there,  <%= userme.userName[0].toUpperCase()+userme.userName.substring(1) %>!</h1>
-
 <br>
 
-<!--if the user is a student they get a list of books the have checked out -->
-              <%if(userme.role == "Teacher"){ %>
-
-                
+<!--If user is a teacher they see a list of their top readers -->
+              <%if(userme.role == "Teacher"){ %>              
                 <h4 class="text-2xl font-bold">Your Top Readers Are...</h4>
                 <ol>
                   <li>1. <%=(users[0].userName[0].toUpperCase()+users[0].userName.substring(1))%></li>
@@ -22,39 +31,28 @@
                   <li>3. <%=(users[2].userName[0].toUpperCase()+users[2].userName.substring(1))%></li>
                 </ol>
                 <br><br>
-                <h4 class="text-2xl font-bold">Select a Student to View their report...</h4>
 
+<!--TO DO: create an ability for teacher to view each students book list -->
+                <h4 class="text-2xl font-bold">Select a Student to View their report...</h4>
                 <select class="select select-info w-full max-w-xs">
-                  
                   <option disabled selected>Select Student</option>
                 <% for(var i=0; i<users.length; i++) {%>
                   <%if(users[i].role == "Student"){ %>
-
                 <option><%=(users[i].userName)%></option>
-
                 <% } %>
-                <% } %>
-
-                              
+                <% } %>                             
                 </select>
-
                 <% } %> 
 <!--who ever is selected in the list above will populate the table below with the books they have checked out and any data about them.-->
 
-
-
-
-
-
-
-
-
+<!--If user is a student the see a table of books they have checked out -->
               <%if(userme.role == "Student"){ %>
               <span class="text-3xl font-bold"><strong>You currently have the following books checked out:</strong></span><br>
               <!--loop over all of the books this student has 'checked out' into a table-->
               <br>
               <div class="container">
                 <div class="overflow-x-auto">
+                  <%if(booksCheckedOut !== 0){ %>
                   <table class="table table-compact w-full">
                     <tr>
                       <th></th>
@@ -62,8 +60,6 @@
                       <th>Author</th>
                       <th>Due Date</th>
                     </tr>
-
-              
                     <% for(var i=0; i<books.length; i++) {%>
                       <% if (books[i].whereIsTheBook===userme.userName){%>
                         <tr>
@@ -77,33 +73,26 @@
                           </td>
                           <td><a href="/book/<%= books[i]._id%>"><%= books[i].title %></a></td>
                           <td><%= books[i].author %></td>
-
                           <td><%= books[i].dueDate %></td>
-
                         </tr>
-
-
-
-
                         </a>
                       </li>
                       <% } %>
-
-
-
-                     
-
-                    <% } %>
+                      <% } %>
+                    <% }else{%>
+                      <!--If the user doesn't have any books checked out-->
+                      <p>You have no books checked out.</p>
+                      <%} %>
                   </table>
                 </div>
               </div>  
-
              <%}%>
-
           </div>
 <br>
+<!--Only students can see this section of books the currently have on hold-->
 <%if(userme.role == "Student"){ %>
   <span class="text-3xl font-bold"><strong>You currently have the following books on hold:</strong></span><br>
+  <%if(booksOnHold !== 0){ %>
   <!--loop over all of the books this student has 'checked out' into a table-->
   <br>
   <div class="container">
@@ -115,8 +104,6 @@
           <th>Author</th>
           <th>Spot Number</th>
         </tr>
-
-  
         <% for(var i=0; i<books.length; i++) {%>
           <% if (books[i].holdBook.includes(userme.userName)===true){%>
             <tr>
@@ -127,98 +114,61 @@
                   </a>
                 </div>
                 </div>
-              </td>
-              
+              </td>        
               <td><a href="/book/<%= books[i]._id%>"><%= books[i].title %></a></td>
               <td><%= books[i].author %></td>
-
               <td><%= books[i].holdBook.indexOf(userme.userName)+1 %></td>
-
             </tr>
-
-
-
-
             </a>
           </li>
           <% } %>
-
-
-
-         
-
-        <% } %>
+          <%} %>
       </table>
     </div>
   </div>  
-
+  <% }else{%> 
+    <!--If the user doesn't have any books checked out-->
+    <p>You have no books on hold.</p>
+    <%} %>
  <%}%>
-
 </div>
 <br>
+<!-- shows badges students earn and number of books read/percent of your goal-->
+<!-- only visible to students -->
 <%if(userme.role == "Student"){ %>
-
-
-<!--add feature for kids to earn badges after a certain number of books are read -->
-
 <div class="stats shadow">
-  
   <div class="stat">
     <div class="stat-figure text-secondary">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-8 h-8 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
     </div>
     <div class="stat-title">Number of book<% if (userme.booksRead!==1){%>s<% } %> read</div>
     <div class="stat-value"><%= userme.booksRead%></div>
-
   </div>
-  
-
   <div class="stat">
     <div class="stat-figure text-secondary">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-8 h-8 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
     </div>
-    <div class="stat-title">Percent of Goal</div>
-    
+    <div class="stat-title">Percent of Goal</div>    
     <div class="stat-value"><%= Math.floor(userme.booksRead/75*100)
       +"%" %></div>
-  </div>
-  
+  </div> 
 </div><br><br>
 <h2 class="text-3xl font-bold"><b>Badges Earned</b></h2>
 <div class="avatar w-24 rounded">
-
-<% if (userme.booksRead>=0){%><img class="w-10 rounded" src="https://res.cloudinary.com/dgudt0rnn/image/upload/v1671154254/jumping_dajnpm.png"><% } %> 
-<% if (userme.booksRead>1){%><img class="w-20 rounded"src="https://res.cloudinary.com/dgudt0rnn/image/upload/v1671154254/outstanding_syzzjw.png"><% } %> 
-<% if (userme.booksRead>5){%><img class="w-20 rounded" src="https://res.cloudinary.com/dgudt0rnn/image/upload/v1671154254/ace_v90ofi.png"><% } %> 
-<% if (userme.booksRead>0){%><img class="w-20 rounded" src="https://res.cloudinary.com/dgudt0rnn/image/upload/v1671154254/bookworm_uvxsjk.png"><% } %> 
-<% if (userme.booksRead>15){%><img class="w-20 rounded" src="https://res.cloudinary.com/dgudt0rnn/image/upload/v1671154254/terrific_ha4ozu.png"><% } %> 
-
+<% if (userme.booksRead>0){%><img class="w-10 rounded" src="https://res.cloudinary.com/dgudt0rnn/image/upload/v1671154254/jumping_dajnpm.png"><% } %> 
+<% if (userme.booksRead>5){%><img class="w-20 rounded"src="https://res.cloudinary.com/dgudt0rnn/image/upload/v1671154254/outstanding_syzzjw.png"><% } %> 
+<% if (userme.booksRead>15){%><img class="w-20 rounded" src="https://res.cloudinary.com/dgudt0rnn/image/upload/v1671154254/ace_v90ofi.png"><% } %> 
+<% if (userme.booksRead>20){%><img class="w-20 rounded" src="https://res.cloudinary.com/dgudt0rnn/image/upload/v1671154254/bookworm_uvxsjk.png"><% } %> 
+<% if (userme.booksRead>25){%><img class="w-20 rounded" src="https://res.cloudinary.com/dgudt0rnn/image/upload/v1671154254/terrific_ha4ozu.png"><% } %> 
 <%}%>
-
 </div>
-
-
-
       </div>
       <div class="col-6">
-       <!-- <ul class="row list-unstyled">
-        <% for(var i=0; i<books.length; i++) {%>
-          <li class="col-6 justify-content-between mt-5">
-            <a href="/book/<%= books[i]._id%>">
-              <img class="img-fluid" src="<%= books[i].image%>">
-            </a>
-          </li>
-        <% } %>
-        </ul>-->
-
-
-
-
         <div class="row justify-content-center mt-5">
+          <!--Only teacher has access to this link to add a book to the library-->
           <%if(userme.role == "Teacher"){ %>
           <a class="btn btn-primary" href="/addabook">Add Books to the Shelf</a>
           <%}%>
-
           <a class="btn btn-primary" href="/feed">Look for Books</a>
         </div>  
       </div>  
