@@ -2,22 +2,24 @@
 <!--only users with the assigned role of teacher can Add a Book-->
 
 <%if(user.role == "Teacher"){ %>
-
-<!--NEXT GOAL: TO PULL IN API FOR TEACHER TO PULL BOOKS FROM AND ADD TO API DATABASE!! -->
-  <div class="mt-5">
-    <h2>Create a Book</h2>
+  <div class="hero min-h-screen bg-base-200">
+    <div class="hero-content flex-col lg:flex-row-reverse">
+      <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+        <div class="card-body">
+          <div class="form-control">
+    <h2 class="text-3xl font-bold">Add Book</h2>
     <form action="/book/createBook" enctype="multipart/form-data" method="POST">
       <div class="mb-3">
           <label for="title" class="form-label">Title</label>
-          <textarea type="text" class="input input-bordered w-full max-w-xs" id="title" name="title">hihihi</textarea>
+          <textarea type="text" class="input input-bordered w-full max-w-xs" id="title" name="title"></textarea>
       </div>
       <div class="mb-3">
         <label for="author" class="form-label">Author</label>
         <textarea class="input input-bordered w-full max-w-xs" id="author" name="author"></textarea>
       </div>
       <div class="mb-3">
-        <label for="imgUpload" class="form-label">Image</label>
-        <input type="file"  id="imageUpload" name="file">
+        <label for="imgUpload" class="form-label">Book Cover</label>
+        <input type="file"  id="imageUpload" name="file" >
       </div>
       <button type="submit" class="inline-block cursor-pointer rounded-md bg-gray-800 px-4 py-3 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-900"  value="Upload">Submit</button>
     </form>
@@ -26,11 +28,11 @@
   <!--You can do it the same way you would POST data from a frontend, just GET the data from xyz API instead and form it into the structure your DB expects
 -->
 <br> 
-  <h2>Find a Book to add</h2>
+  <h2 class="text-3xl font-bold">Add Book By ISBN</h2>
   <section>		
     <form action="/book/createBookByISBN" enctype="multipart/form-data" method="POST">
       <div class="mb-3">
-          <label for="isbn" class="form-label">isbn</label>
+          <label for="isbn" class="form-label">ISBN</label>
           <textarea type="text" class="input input-bordered w-full max-w-xs" id="isbn" name="isbn"></textarea>
       </div>
       <button type="submit" class="inline-block cursor-pointer rounded-md bg-gray-800 px-4 py-3 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-900"  value="Upload">Submit</button>
@@ -41,6 +43,9 @@
 
 
     <%}%>
+  </div>
+</div>
+</div></div>
 </div>
 
 
