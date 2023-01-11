@@ -38,7 +38,7 @@ for(var i=0; i<books.length; i++) {
                   <option disabled selected>Select Student</option>
                 <% for(var i=0; i<users.length; i++) {%>
                   <%if(users[i].role == "Student"){ %>
-                <option><%=(users[i].userName)%></option>
+                <option><%=( users[i].userName[0].toUpperCase()+users[i].userName.substring(1))%></option>
                 <% } %>
                 <% } %>                             
                 </select>
