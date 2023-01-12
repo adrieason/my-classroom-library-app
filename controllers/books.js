@@ -52,7 +52,7 @@ module.exports = {
         likes: 0,
         user: req.user.id,
         createdBy: req.user.userName,
-        whereIsTheBook: req.user.userName,
+        whereIsTheBook: "Bookshelf",
       });
       console.log("Book has been added!");
       res.redirect("/addabook");
@@ -94,7 +94,7 @@ module.exports = {
         likes: 0,
         user: req.user.id,
         createdBy: req.user.userName,
-        whereIsTheBook: req.user.userName,
+        whereIsTheBook: "Bookshelf",
       });
       console.log("Book has been added!");
       res.redirect("/addabook");

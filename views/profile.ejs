@@ -45,7 +45,46 @@ for(var i=0; i<books.length; i++) {
                 <button class="btn">Go</button>
 
                 <% } %> 
+
+
 <!--who ever is selected in the list above will populate the table below with the books they have checked out and any data about them.-->
+
+<br>
+<br>
+<%if(userme.role == "Teacher"){ %>              
+<div class="container">
+  <div class="overflow-x-auto">
+    <table class="table table-compact w-full">
+      <tr>
+        <th></th>
+        <th>Book</th>
+        <th>Where is the Book</th>
+      </tr>
+      <% for(var i=0; i<books.length; i++) {%>
+          <tr>
+            <td><div class="avatar">
+              <div class="w-24 rounded-xl">
+                <a href="/book/<%= books[i]._id%>">
+                <img src="<%= books[i].image %>" />
+                </a>
+              </div>
+              </div>
+            </td>
+            <td><a href="/book/<%= books[i]._id%>"><%= books[i].title %></a></td>
+            <td><%= books[i].whereIsTheBook %></td>
+          </tr>
+          </a>
+        </li>
+        <% } %>
+    </table>
+  </div>
+</div>  
+
+<% } %>
+
+
+
+
 
 <!--If user is a student the see a table of books they have checked out -->
               <%if(userme.role == "Student"){ %>
