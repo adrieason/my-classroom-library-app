@@ -4,13 +4,12 @@
 
 
 <div class="bg-white">
+  <br>
 
+  
   <div class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-
-
-
-    <!--if book title or author equals whats in the search bar, then display it below-->
 <div class="">
+  
   <div class="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
         <% for(var i=0; i<books.length; i++) {%>
             <a href="/book/<%= books[i]._id%>">
@@ -19,9 +18,8 @@
         <% } %>
     </div>
   </div>  
-  
 </div>
-<!--Want to add a button for teachers to add books to the shelf from the feed -->
+<!-- Button for Teacher to add books to the library-->
 <% if (user.role==="Teacher"){%>          
   <a class="btn btn-primary" href="/addabook">Add Books to the Shelf</a>
 <%}%>
@@ -31,6 +29,4 @@
       </div>
     </div>
   </div>  
-
-
 <%- include('partials/footer') -%>
