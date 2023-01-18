@@ -46,9 +46,9 @@
                 Profile
               </a>
             </li>
-            
-            <li><a href="/addabook">Add A Book
-            </a></li>
+            <%if(user.role == "Teacher"){ %>              
+              <li><a href="/addabook">Add A Book</li>
+            <%}%> 
             <li><a href="/logout">Logout</a></li>
           </ul>
         </div>
@@ -61,8 +61,12 @@
               Profile
             </a>
           </li>
+
           
-          <li><a href="/addabook">Add A Book</li>
+          <%if(user.role == "Teacher"){ %>              
+            <li><a href="/addabook">Add A Book</li>
+          <%}%>              
+
           <li><a href="/logout">Logout</a></li>
         </ul>
       </div>

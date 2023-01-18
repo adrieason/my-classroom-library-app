@@ -10,7 +10,7 @@ module.exports = {
       const books = await Book.find().sort({ createdAt: "desc" }).lean();
       const users = await User.find().sort({ booksRead: "desc" }).lean();
       //const books = await Book.find({ user: req.user.id });
-      res.render("profile.ejs", { books: books, userme: req.user, users: users });
+      res.render("profile.ejs", { books: books, user: req.user, users: users, currentTime: currentTime });
     } catch (err) {
       console.log(err);
     }
@@ -180,7 +180,8 @@ module.exports = {
         { _id: req.params.id },
         { checkout: true,
           whereIsTheBook: req.user.userName,
-          dueDate: moment().add(14, 'days').format('dddd MMM Do') ,
+          dueDate: moment().add(14, 'days') ,
+          //format('dddd MMM Do')
           }
       );
       console.log(req.user.userName + "Checked out the book");
