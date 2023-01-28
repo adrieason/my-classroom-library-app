@@ -42,13 +42,15 @@
           </label>
           <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
             <li>
-              <a href="/profile" class="justify-between">
+              <a href="/profile">
                 Profile
               </a>
             </li>
             <%if(user.role == "Teacher"){ %>              
               <li><a href="/addabook">Add A Book</li>
             <%}%> 
+            <li><a href="/feed">View Library</a></li>
+
             <li><a href="/logout">Logout</a></li>
           </ul>
         </div>
@@ -57,21 +59,18 @@
       <div class="navbar-center hidden lg:flex">
         <ul class="menu menu-horizontal px-1">
           <li>
-            <a href="/profile" class="justify-between">
+            <a href="/profile">
               Profile
             </a>
           </li>
-
-          
           <%if(user.role == "Teacher"){ %>              
-            <li><a href="/addabook">Add A Book</li>
+            <li><a href="/addabook">Add Book</li>
           <%}%>              
-
-          <li><a href="/logout">Logout</a></li>
+          <li><a href="/feed">View Library</a></li>
         </ul>
       </div>
       <div class="navbar-end">
-        <a class="btn" href="/feed">Check Out Book</a>
+        <a class="btn" href="/logout">Log Out</a>
       </div>
     </div>
 

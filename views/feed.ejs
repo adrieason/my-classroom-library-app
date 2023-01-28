@@ -3,10 +3,13 @@
 <!--GOAL: CREATE SEARCH BAR FOR STUDENTS TO SEARCH FOR BOOKS IN  THE DATABASE USING TITLE OR AUTHOR-->
 
 
-<div class="bg-white">
-  <br>
 
-  <input type="text" placeholder="Look for a book" class="input input-bordered input-primary w-full max-w-xs" />
+<div class="bg-white">
+  <form >
+  <input type="text" placeholder="Look for a book" class="input input-bordered input-primary w-full max-w-xs" name="search" id="searchBar" />
+  <a class="btn btn-primary" type="submit" value="search">Submit</a>
+  </form>
+
 
   
   <div class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -25,6 +28,8 @@
 <% if (user.role==="Teacher"){%>          
   <a class="btn btn-primary" href="/addabook">Add Books to the Shelf</a>
 <%}%>
+<br>
+
 </div>
 
 
