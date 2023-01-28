@@ -5,9 +5,12 @@
 
 
 <div class="bg-white">
-  <form >
-  <input type="text" placeholder="Look for a book" class="input input-bordered input-primary w-full max-w-xs" name="search" id="searchBar" />
-  <a class="btn btn-primary" type="submit" value="search">Submit</a>
+
+  <form action="/feed" method="GET" class="form-inline">
+<div class="form-group">
+  <input type="text" name="search" placeholder="Search for book" class="input input-bordered input-primary w-full max-w-xs">
+  <input type="submit" value="Search" class="btn btn-primary">
+</div> 
   </form>
 
 

@@ -60,7 +60,7 @@ app.use("/", mainRoutes);
 app.use("/book", bookRoutes);
 
 //search bar 
-app.get("/search/:key", async (req,resp)=>  {
+/*app.get("/search/:key", async (req,resp)=>  {
   try{
   let e =  await Book.find(  {
     "$or" : [
@@ -71,7 +71,7 @@ app.get("/search/:key", async (req,resp)=>  {
 
 }catch{
   console.log(err);
-}}); 
+}}); */
 
 //Server Running
 app.listen(process.env.PORT, () => {
