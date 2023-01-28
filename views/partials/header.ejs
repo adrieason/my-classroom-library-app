@@ -46,12 +46,11 @@
                 Profile
               </a>
             </li>
+
+            <li><a href="/feed">View Library</a></li>
             <%if(user.role == "Teacher"){ %>              
               <li><a href="/addabook">Add A Book</li>
             <%}%> 
-            <li><a href="/feed">View Library</a></li>
-
-            <li><a href="/logout">Logout</a></li>
           </ul>
         </div>
         <a href="/feed" class="btn btn-ghost normal-case text-xl">Our Classroom Library</a>
@@ -63,10 +62,11 @@
               Profile
             </a>
           </li>
+            
+          <li><a href="/feed">View Library</a></li>
           <%if(user.role == "Teacher"){ %>              
             <li><a href="/addabook">Add Book</li>
-          <%}%>              
-          <li><a href="/feed">View Library</a></li>
+          <%}%>  
         </ul>
       </div>
       <div class="navbar-end">

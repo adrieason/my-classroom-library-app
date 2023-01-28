@@ -19,7 +19,7 @@ module.exports = {
    if(req.query.search){
     const regex = new RegExp(escapeRegex(req.query.search), 'gi');
       try {
-        const books = await Book.find({title: regex }).sort({ checkout: "asc", title: "asc" }).lean();
+        const books = await Book.find({title: regex}).sort({ checkout: "asc", title: "asc" }).lean();
         res.render("feed.ejs", { books: books, user: req.user });
       } catch (err) {
         console.log(err);

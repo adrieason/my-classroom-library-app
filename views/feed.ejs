@@ -1,24 +1,20 @@
 <%- include('partials/header') -%>
 
-<!--GOAL: CREATE SEARCH BAR FOR STUDENTS TO SEARCH FOR BOOKS IN  THE DATABASE USING TITLE OR AUTHOR-->
-
-
 
 <div class="bg-white">
-
-  <form action="/feed" method="GET" class="form-inline">
-<div class="form-group">
-  <input type="text" name="search" placeholder="Search for book" class="input input-bordered input-primary w-full max-w-xs">
-  <input type="submit" value="Search" class="btn btn-primary">
-</div> 
-  </form>
-
-
-  
-  <div class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+  <!--search bar-->
+  <div class="hero-content text-center inline">
+<form action="/feed" method="GET" class="form-inline">
+  <div class="form-group">
+    <input type="text" name="search" placeholder="Search for book by title" class="input input-bordered input-primary w-full max-w-xs">
+    <input type="submit" value="Search" class="btn btn-primary">
+  </div> 
+</form>
+</div>
+<!--show all book in the library OR all books that are being searched-->
+<div class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
 <div class="">
-  
-  <div class="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
+    <div class="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
         <% for(var i=0; i<books.length; i++) {%>
             <a href="/book/<%= books[i]._id%>">
               <img class="h-full w-full object-cover object-center group-hover:opacity-75" src="<%= books[i].image%>">
@@ -27,16 +23,6 @@
     </div>
   </div>  
 </div>
-<!-- Button for Teacher to add books to the library-->
-<% if (user.role==="Teacher"){%>          
-  <a class="btn btn-primary" href="/addabook">Add Books to the Shelf</a>
-<%}%>
-<br>
-
 </div>
 
-
-      </div>
-    </div>
-  </div>  
 <%- include('partials/footer') -%>
