@@ -51,6 +51,9 @@
             <%if(user.role == "Teacher"){ %>              
               <li><a href="/addabook">Add A Book</li>
             <%}%> 
+            <%if(user.role == "Student"){ %>              
+              <li><a href="/stats">Your Stats</li>
+            <%}%> 
           </ul>
         </div>
         <a href="/feed" class="btn btn-ghost normal-case text-xl">Our Classroom Library</a>
@@ -67,6 +70,9 @@
           <%if(user.role == "Teacher"){ %>              
             <li><a href="/addabook">Add Book</li>
           <%}%>  
+          <%if(user.role == "Student"){ %>              
+            <li><a href="/stats">Your Stats</li>
+          <%}%> 
         </ul>
       </div>
       <div class="navbar-end">
