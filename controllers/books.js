@@ -190,7 +190,7 @@ module.exports = {
         { _id: req.params.id },
         { checkout: true,
           whereIsTheBook: req.user.userName,
-          dueDate: moment().add(14, 'days') ,
+          dueDate: moment().add(14, 'days').format('dddd MMM Do'),
           //format('dddd MMM Do')
           }
       );
@@ -237,6 +237,16 @@ module.exports = {
       console.log(err);
     }
   },
+  getStats: async (req, res) => {
+    try {
+      const books = await Book.find().sort({ createdAt: "desc" }).lean();
+      const users = await User.find().sort({ booksRead: "desc" }).lean();
+      //const books = await Book.find({ user: req.user.id });
+      res.render("stats.ejs", { books: books, user: req.user, users: users });
+    } catch (err) {
+      console.log(err);
+    }
+   }, 
 };
 
 function escapeRegex(text) {

@@ -11,6 +11,7 @@ router.get("/profile", ensureAuth, booksController.getProfile);
 router.get("/about", homeController.getAbout);
 router.get("/feed", ensureAuth, booksController.getFeed);
 router.get("/addabook", ensureAuth, booksController.getAddabook);
+router.get("/stats", ensureAuth, booksController.getStats);
 router.get("/login", authController.getLogin);
 router.post("/login", authController.postLogin);
 router.get("/logout", authController.logout);

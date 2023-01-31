@@ -1,0 +1,51 @@
+<%- include('partials/header') -%>
+
+<%if(user.role == "Student"){ %>
+<div class="text-center">
+  <h5 class="text-2xl"><strong>Reading Stats!</strong></h5><br>
+</div>
+
+
+  <div class="hero-content flex-col lg:flex-row-reverse">
+    <div class="text-center items-center">
+      <h2 class="text-1xl"><b>Badges Earned:</b></h2>
+      <div class="avatar w-24 rounded">
+      <% if (user.booksRead>0){%><img class="w-10 rounded" src="https://res.cloudinary.com/dgudt0rnn/image/upload/v1671154254/jumping_dajnpm.png"><% } %> 
+      <% if (user.booksRead>5){%><img class="w-20 rounded"src="https://res.cloudinary.com/dgudt0rnn/image/upload/v1671154254/outstanding_syzzjw.png"><% } %> 
+      <% if (user.booksRead>15){%><img class="w-20 rounded" src="https://res.cloudinary.com/dgudt0rnn/image/upload/v1671154254/ace_v90ofi.png"><% } %> 
+      <% if (user.booksRead>20){%><img class="w-20 rounded" src="https://res.cloudinary.com/dgudt0rnn/image/upload/v1671154254/bookworm_uvxsjk.png"><% } %> 
+      <% if (user.booksRead>25){%><img class="w-20 rounded" src="https://res.cloudinary.com/dgudt0rnn/image/upload/v1671154254/terrific_ha4ozu.png"><% } %> 
+      <%}%>
+      </div>
+    </div>
+
+    <div class="stats shadow">
+      <div class="stat">
+        <div class="stat-figure text-secondary">
+
+        </div>
+        <div class="stat-title">Number of book<% if (user.booksRead!==1){%>s<% } %> read</div>
+        <div class="stat-value"><%= user.booksRead%></div>
+      </div>
+      <div class="stat">
+        <div class="stat-figure text-secondary">
+
+        </div>
+        <div class="stat-title">Percent of Goal</div>    
+        <div class="stat-value"><%= Math.floor(user.booksRead/75*100)
+          +"%" %></div>
+      </div> 
+    </div>
+</div>
+<br><br>
+
+      </div>
+      <div class="col-6">
+        <div class="row justify-content-center mt-5">
+          <a class="btn btn-primary" href="/feed">Look for Books</a>
+        </div>  
+      </div>  
+    </div>
+  </div>
+</div>
+<%- include('partials/footer') -%>
