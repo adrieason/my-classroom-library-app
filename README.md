@@ -10,7 +10,6 @@ HTML, CSS, JavaScript, Node.js, Express, DaisyUI, tailwindcss,
 
 # Future add ons 
 - Teacher ability to view/print off a list of books that each student has checked out 
-- Ability for students to easily search for books using a search bar 
 - Using Clever badges (QR codes) for younger students to log in without typing
 - Sorting books by reading level 
 - Students adding book reviews 
