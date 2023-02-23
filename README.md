@@ -4,6 +4,7 @@ This is a full-stack app, that solves a big problem for many classroom K-8 teach
 
 Here is a link to the website: [https://classroom-library-app.cyclic.app] 
 
+<img src="Screenshot 2023-02-23 at 10.35.35 AM.png">
 # Technologies Used 
 
 HTML, CSS, JavaScript, Node.js, Express, DaisyUI, tailwindcss, 
